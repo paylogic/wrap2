@@ -130,7 +130,8 @@ def test_get():
 
     fb = facebook.Facebook(1, 2)
     results = fb.get(dict(ids=[123123123, 234234234]), 'sometesttoken')
-
+    print results
+    print EXPECTED_DATA_GET
     assert results == EXPECTED_DATA_GET
 
 
