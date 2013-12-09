@@ -31,7 +31,7 @@ with open(readme_file, 'r') as f:
 
 setup(
     name='wrap2',
-    version='0.3',
+    version='0.9',
     description='Wrapper for social network wrappers',
     long_description=readme_text,
     author='Paylogic International',
