@@ -5,6 +5,14 @@ The ``wrap2`` package is a wrapper for various social networks wrappers.
 Various networks have different format for "posts". Twitter is chosen as standard, so other networks posts are
 converted to be twitter-like.
 
+.. image:: https://api.travis-ci.org/paylogic/wrap2.png
+   :target: https://travis-ci.org/paylogic/wrap2
+.. image:: https://pypip.in/v/wrap2/badge.png
+   :target: https://crate.io/packages/wrap2/
+.. image:: https://coveralls.io/repos/paylogic/wrap2/badge.png?branch=master
+   :target: https://coveralls.io/r/paylogic/wrap2
+
+
 Installation
 ------------
 
