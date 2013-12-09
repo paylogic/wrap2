@@ -2,9 +2,11 @@
 
 import datetime
 
-import anyjson
 import urlparse
+
+import anyjson
 import facebook as facebook_api
+import pytz
 
 import mock
 import testfixtures
@@ -37,7 +39,7 @@ DATA_GET = r"""{"data":[{"name":"posts","fql_result_set":[{"post_id":"3025902765
 "fql_result_set":[{"uid":100000103765943,"name":"Yami Malik Ishtar"},
 {"uid":100003032215825,"name":"Kairis Namine"}]}]}"""
 
-EXPECTED_DATA_GET = [{'created_at': datetime.datetime(2012, 12, 17, 20, 50, 7),
+EXPECTED_DATA_GET = [{'created_at': datetime.datetime(2012, 12, 17, 19, 50, 7, tzinfo=pytz.UTC),
                       'entities': {'urls': [{
                                             'display_url': 'http://www.facebook.com/groups/302590276513997/'
                                                            'permalink/316411988465159/',
@@ -55,7 +57,7 @@ EXPECTED_DATA_GET = [{'created_at': datetime.datetime(2012, 12, 17, 20, 50, 7),
                       'iso_language_code': 'en',
                       'metadata': {'recent_retweets': 0, 'result_type': 'recent'},
                       'text': u'I <3 fatal frame \uff3c(^o^)\uff0f'},
-                     {'created_at': datetime.datetime(2012, 12, 17, 23, 6, 19),
+                     {'created_at': datetime.datetime(2012, 12, 17, 22, 6, 19, tzinfo=pytz.UTC),
                       'entities': {'urls': [{
                                             'display_url': 'http://www.facebook.com/groups/302590276513997/'
                                                            'permalink/316451585127866/',
@@ -73,7 +75,7 @@ EXPECTED_DATA_GET = [{'created_at': datetime.datetime(2012, 12, 17, 20, 50, 7),
                       'iso_language_code': 'en',
                       'metadata': {'recent_retweets': 0, 'result_type': 'recent'},
                       'text': "i couldn't sleep..."},
-                     {'created_at': datetime.datetime(2012, 12, 17, 23, 7),
+                     {'created_at': datetime.datetime(2012, 12, 17, 22, 7, tzinfo=pytz.UTC),
                       'entities': {'urls': [{
                                             'display_url': 'http://www.facebook.com/groups/302590276513997/'
                                                            'permalink/316451585127866/'
@@ -96,7 +98,7 @@ EXPECTED_DATA_GET = [{'created_at': datetime.datetime(2012, 12, 17, 20, 50, 7),
                       'iso_language_code': 'en',
                       'metadata': {'recent_retweets': 0, 'result_type': 'recent'},
                       'text': 'let me sleep with u hahaha...'},
-                     {'created_at': datetime.datetime(2012, 12, 17, 23, 11, 2),
+                     {'created_at': datetime.datetime(2012, 12, 17, 22, 11, 2, tzinfo=pytz.UTC),
                       'entities': {'urls': [{
                                             'display_url': 'http://www.facebook.com/groups/302590276513997/'
                                                            'permalink/316451585127866/'
@@ -131,7 +133,8 @@ def test_get():
 
     fb = facebook.Facebook(1, 2)
     results = fb.get(dict(ids=[123123123, 234234234]), 'sometesttoken')
-    testfixtures.compare(results[0], EXPECTED_DATA_GET[0])
+    for expected_result, result in zip(EXPECTED_DATA_GET, results):
+        testfixtures.compare(expected_result, result)
 
 
 @patch_fb

@@ -41,7 +41,9 @@ setup(
     install_requires=[
         'facebook-sdk',
         'tweepy',
-        'anyjson'],
+        'anyjson',
+        'pytz'
+    ],
 
     dependency_links=[],
     tests_require=['detox'],

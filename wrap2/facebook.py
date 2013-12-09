@@ -10,6 +10,7 @@ import urlparse
 import json
 
 import facebook
+import pytz
 
 from wrap2.core import SocialNetwork
 
@@ -162,7 +163,7 @@ class Facebook(SocialNetwork):
         """
 
         return {"text": post["message"],
-                "created_at": datetime.datetime.fromtimestamp(post['created_time']),
+                "created_at": datetime.datetime.fromtimestamp(post['created_time'], pytz.UTC),
                 "entities": {
                     "urls": [
                         {
