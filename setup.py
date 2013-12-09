@@ -21,19 +21,17 @@ class ToxTestCommand(TestCommand):
         errno = detox.main.main(self.test_args)
         sys.exit(errno)
 
+long_description = []
 
-# Fill in the long description (for the benefit of PyPi)
-# with the contents of README.rst (rendered by GitHub).
-readme_file = join(dirname(abspath(__file__)), 'README.rst')
-
-with open(readme_file, 'r') as f:
-    readme_text = f.read()
+for text_file in ['README.rst', 'CHANGES.rst']:
+    with open(join(dirname(abspath(__file__)), text_file), 'r') as f:
+        long_description.append(f.read())
 
 setup(
     name='wrap2',
     version='0.9',
     description='Wrapper for social network wrappers',
-    long_description=readme_text,
+    long_description='\n'.join(long_description),
     author='Paylogic International',
     author_email='developers@paylogic.com',
     license='MIT',
