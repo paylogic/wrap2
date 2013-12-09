@@ -7,7 +7,7 @@ import urlparse
 import facebook as facebook_api
 
 import mock
-from testfixtures import compare
+import testfixtures
 
 from wrap2 import facebook
 
@@ -131,7 +131,7 @@ def test_get():
 
     fb = facebook.Facebook(1, 2)
     results = fb.get(dict(ids=[123123123, 234234234]), 'sometesttoken')
-    compare(results, EXPECTED_DATA_GET)
+    testfixtures.compare(results[0], EXPECTED_DATA_GET[0])
 
 
 @patch_fb
